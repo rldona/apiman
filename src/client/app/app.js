@@ -1,8 +1,6 @@
 (function() {
   'use strict';
 
-  console.log('app');
-
   angular
     .module('app', [
 

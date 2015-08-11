@@ -1,8 +1,6 @@
 (function() {
   'use strict';
 
-  console.log('findApi');
-
   angular
     .module('core.services')
     .factory('findApi', findApi);

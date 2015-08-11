@@ -18,7 +18,7 @@
 
     ////////
 
-    vm.find = function(url) {
+    vm.get = function(url) {
       return findApi.get(url).then(function(data) {
         vm.dataAPI = data.data;
         vm.fields = Object.getOwnPropertyNames(data.data[0]);
