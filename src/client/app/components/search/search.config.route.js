@@ -5,7 +5,7 @@
 
   .config(['$routeProvider', function($routeProvider) {
 
-    $routeProvider.when('/search', {
+    $routeProvider.when('/', {
       templateUrl: '/app/components/search/search.html',
       controller: 'SearchCtrl as vm'
     });
