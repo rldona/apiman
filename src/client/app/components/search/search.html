@@ -1,36 +1,45 @@
 <!-- TODO: crear una directiva -->
-<section id="search" ng-controller="SearchCtrl as vm">
+<section id="search">
 
   <div class="container">
-		<div class="row">
-			<div class="span12">
+  	<div class="row">
+  		<div class="span12">
 
-      <h2><span class="icon-search" aria-hidden="true"></span> Introduce una URL válida de tu API</h2>
-      <input type="text" ng-model="vm.url" placeholder="https://domain/api/v1/products" />
+        <h2><span class="icon-search" aria-hidden="true"></span> Enter a valid URL of your API</h2>
+        <input type="text" ng-model="vm.url" placeholder="https://domain/api/v1/products" />
 
-      <a ng-click="vm.get(vm.url)" class="btn btn-primary btn-block">Buscar</a>
+        <a ng-click="vm.getData()" class="btn btn-primary btn-block">Search</a>
 
-      <br /><br />
+        <br /><br />
 
-      <ul>
-        <li ng-repeat="item in vm.dataAPI">
-          <p ng-repeat="field in vm.fields">
-            {{item[field]}}
+        <ul ng-show="vm.showSearch">
+          <li ng-repeat="item in vm.dataAPI">
+            <p ng-repeat="field in vm.fields">
+              <span ng-if="field != '__v' && field != '_id'">
+              {{item[field]}}
+              </span>
+            </p>
+            <a ng-click="vm.deleteData(item._id)" class="btn btn-primary btn-block">Delete</a>
+          </li>
+        </ul>
+
+        <br /><br />
+
+        <article ng-show="vm.showAdd">
+
+          <p ng-repeat="item in vm.fields">
+            <span ng-if="item != '__v' && item != '_id'">
+            <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
+            </span>
           </p>
-        </li>
-      </ul>
 
-      <p ng-repeat="item in vm.testArray">
-        <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
-      </p>
+          <a ng-click="vm.postData(vm.newItem)" class="btn btn-primary btn-block">Add</a>
 
-      {{vm.newItem}}
-
-      <a ng-click="vm.post(vm.newItem)" class="btn btn-primary btn-block">Add</a>
+        </article>
 
       </div>
-		</div>
-	</div>
+  	</div>
+  </div>
 
 
 </section>

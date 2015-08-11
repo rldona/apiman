@@ -10,18 +10,23 @@
   function findApi($http) {
 
     return {
-      get : get,
-      post: post
+      getData : getData,
+      postData: postData,
+      deleteData: deleteData
     };
 
     ////////
 
-    function get(url) {
+    function getData(url) {
       return $http.get(url);
     }
 
-    function post(url, data) {
+    function postData(url, data) {
       return $http.post(url, data);
+    }
+
+    function deleteData(url) {
+      return $http.delete(url);
     }
 
   }

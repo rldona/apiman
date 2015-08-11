@@ -5,29 +5,67 @@
     .module('app')
     .controller('SearchCtrl', SearchController);
 
-  SearchController.$inject = ['findApi'];
+  SearchController.$inject = ['$scope', 'findApi'];
 
-  function SearchController(findApi) {
+  function SearchController($scope, findApi) {
     var vm = this;
+    vm.url = sessionStorage.getItem('url') || null;
     vm.dataAPI = null;
     vm.fields = null;
-
-    vm.testArray = ['name', 'sku', 'price'];
-
+    vm.testArray = null;
     vm.newItem = {};
+
+    // guardar URL en sessionStorage()
+
+    $scope.$watch('vm.url', function() {
+      if(vm.url) {
+
+        sessionStorage.setItem('url', vm.url);
+
+        return findApi.getData(vm.url).then(function(data) {
+          vm.dataAPI = data.data;
+          vm.fields = Object.getOwnPropertyNames(data.data[0]);
+
+          // show section
+          vm.showAdd = true;
+        });
+      }
+    });
 
     ////////
 
-    vm.get = function(url) {
-      return findApi.get(url).then(function(data) {
-        vm.dataAPI = data.data;
-        vm.fields = Object.getOwnPropertyNames(data.data[0]);
+    vm.getData = function() {
+      if(vm.url) {
+
+        vm.showSearch = true;
+
+        return findApi.getData(vm.url).then(function(data) {
+          // vm.dataAPI = data.data;
+          // vm.fields = Object.getOwnPropertyNames(data.data[0]);
+
+          // show section
+          // vm.showSearch = true;
+        });
+      }
+    };
+
+    vm.postData = function(item) {
+      return findApi.postData(vm.url, item).then(function(data) {
+        if(vm.showAdd) {
+          return findApi.getData(vm.url).then(function(data) {
+            vm.dataAPI = data.data;
+            vm.fields = Object.getOwnPropertyNames(data.data[0]);
+          });
+        }
       });
     };
 
-    vm.post = function(item) {
-      return findApi.post(vm.url, item).then(function(data) {
-        console.log(data);
+    vm.deleteData = function(id) {
+      return findApi.deleteData(vm.url + id).then(function(data) {
+        return findApi.getData(vm.url).then(function(data) {
+          vm.dataAPI = data.data;
+          vm.fields = Object.getOwnPropertyNames(data.data[0]);
+        });
       });
     };
 
