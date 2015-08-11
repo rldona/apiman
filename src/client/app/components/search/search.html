@@ -1,0 +1,31 @@
+<!-- TODO: crear una directiva -->
+<section id="search" ng-controller="SearchCtrl as vm">
+
+  <div class="container">
+		<div class="row">
+			<div class="col-md-4">
+
+      <h2><span class="icon-search" aria-hidden="true"></span> {{vm.title}}</h2>
+      <input type="text" ng-model="vm.url" placeholder="https://domain/api/v1/products" />
+
+      <h3>Campos a buscar en el API (como mínimo uno) separados por comas:</h3>
+      <input type="text" ng-model="vm.listFields" placeholder="_id, name, surname" />
+
+      <a ng-click="vm.find(vm.url)" class="btn btn-primary btn-block">Buscar</a>
+
+      <br /><br />
+
+      <ul>
+        <li ng-repeat="item in vm.dataAPI">
+          <p ng-repeat="field in vm.fields">
+            {{item[field]}}
+          </p>
+        </li>
+      </ul>
+
+      </div>
+		</div>
+	</div>
+
+
+</section>

@@ -1,0 +1,220 @@
+/***************************************
+  = GENERAL
+***************************************/
+
+body {
+  font: normal 400 $font_base_size 'Open Sans', arial;
+
+  color: #000;
+  background: #FFF;
+
+  -webkit-overflow-scroll: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-backface-visibility: hidden;
+}
+
+input {
+  outline: none;
+  display: block;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.8em;
+}
+
+ul {
+  li {
+    list-style: circle;
+  }
+}
+
+section {
+  padding: 1em 0;
+}
+
+#search {
+  h2 {
+    margin-bottom: 1em;
+  }
+}
+
+#repositories {
+  img {
+    margin: 0 0 1em;
+    width: 80%;
+  }
+  ul {
+    padding-left: 1.5em;
+    li {
+      h2 {
+        font-size: 0.9em;
+      }
+      p {
+        font-size: 0.7em;
+      }
+    }
+  }
+}
+
+/***************************************
+  = ANIMATIONS
+***************************************/
+
+// zoom
+
+@-webkit-keyframes zoom {
+  50% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+// zoom-zoom
+
+@-webkit-keyframes zoom-zoom {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+
+    color: $white;
+    background-color: transparent;
+  }
+  50% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+
+    color: $black;
+    background-color: $white;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+
+    color: $white;
+    background-color: transparent;
+  }
+}
+
+@keyframes zoom-zoom {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+
+    color: $white;
+    background-color: transparent;
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+
+    color: $black;
+    background-color: $white;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+
+    color: $white;
+    background-color: transparent;
+  }
+}
+
+// move logo small
+
+@-webkit-keyframes logo-small-move {
+  from {
+    margin-top: -100%;
+  }
+  to {
+    margin-top: 0;
+  }
+}
+
+@keyframes logo-small-move {
+  from {
+    margin-top: -100%;
+  }
+  to {
+    margin-top: 0;
+  }
+}
+
+// fade-in
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// rotate
+
+@-webkit-keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// fade-out
+
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

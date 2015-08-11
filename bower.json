@@ -1,7 +1,7 @@
 {
-  "name": "github-accounts-finder",
+  "name": "apiman",
   "version": "0.0.0",
-  "homepage": "https://github.com/rldona/github-accounts-finder",
+  "homepage": "https://github.com/rldona/apiman",
   "authors": [
     "Raúl López <rldona@gmail.com>"
   ],
@@ -12,5 +12,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-route": "~1.4.3",
+    "angular-animate": "~1.4.3",
+    "angular-resource": "~1.4.3"
+  }
 }

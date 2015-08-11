@@ -1,0 +1,84 @@
+/***************************************
+  = Mixins
+***************************************/
+
+@mixin centrar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+@mixin animation($who, $time, $animation) {
+  -webkit-transition: $who $time $animation;
+  -moz-transition: $who $time $animation;
+  transition: $who $time $animation;
+}
+
+@mixin clearfix {
+  *zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+
+    content: ' ';
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin button {
+  display: inline-block;
+
+  text-decoration: none;
+
+  color: $white;
+  border: 1px solid #0bd;
+
+  @include single-box-shadow(#b4f0ff, 0, 1px, 0, 0, inset);
+  @include background-image(linear-gradient(#64e0ff 30%, #03c7f8 70%));
+  @include border-radius(5px);
+  &.small {
+    padding: 10px 15px!important;
+  }
+  &.big {
+    font-weight: 400;
+
+    padding: 15px 30px;
+  }
+  &.contact {
+    margin-top: 29px;
+
+    border-bottom: 0 solid $azul;
+    &:hover {
+      border-bottom: 0 solid $azul;
+    }
+  }
+  &.naranja {
+    border: 1px solid #ea7f00;
+
+    @include single-box-shadow(#ffdfad, 0, 1px, 0, 0, inset);
+    @include background-image(linear-gradient(#ffbd56 30%, #f88d01 70%));
+  }
+}
+
+@mixin background-image-retina($file, $type) {
+  background-image: url('..' ) /img/$file + '.' + $type;
+  background-repeat: no-repeat;
+
+  @include background-size(contain);;
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    & {
+      background-image: url('..' ) /img/$file + '@2x.' + $type;;
+    }
+  }
+}

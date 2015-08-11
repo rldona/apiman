@@ -1,0 +1,75 @@
+/***************************************
+  = Grid System
+***************************************/
+
+@mixin container {
+    max-width: $container;
+    margin: 0 auto;
+}
+@mixin row {
+    @include clearfix();
+    margin-left: -$gutter;
+}
+@mixin info_col {
+  display: block;
+  float: left;
+  padding-left: $gutter;
+  min-height: 1px;
+}
+@mixin col($col, $totalCol) {
+  width: percentage($col/$totalCol);
+}
+
+.container { @include container; }
+
+.row { @include row; }
+
+.span1, .span2, .span3,
+.span4, .span5, .span6,
+.span7, .span8, .span9,
+.span10, .span11, .span12 { @include info_col; }
+
+.span1  { @include col(1,12);  }
+.span2  { @include col(2,12);  }
+.span3  { @include col(3,12);  }
+.span4  { @include col(4,12);  }
+.span5  { @include col(5,12);  }
+.span6  { @include col(6,12);  }
+.span7  { @include col(7,12);  }
+.span8  { @include col(8,12);  }
+.span9  { @include col(9,12);  }
+.span10 { @include col(10,12); }
+.span11 { @include col(11,12); }
+.span12 { @include col(12,12); }
+
+
+/***************************************
+  = How use the Grid
+***************************************/
+/*
+
+#main {
+  .span3 {
+    @include col(3,12);         // 25%
+    @media(max-width: 767px) {
+      @include col(6,12);       // 50%
+    }
+    @media(max-width: 420px) {
+      @include col(12,12);      // 100%
+    }
+  }
+}
+
+#main-2 {
+  .span2 {
+    @include col(2,12);         // 16%
+    @media(max-width: 767px) {
+      @include col(4,12);       // 33%
+    }
+    @media(max-width: 420px) {
+      @include col(6,12);       // 50%
+    }
+  }
+}
+
+*/

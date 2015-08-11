@@ -1,0 +1,34 @@
+/***************************************
+  = Grid
+***************************************/
+
+// $container: 320px;
+// $gutter: 1.5em;
+
+/***************************************
+	= Variables
+***************************************/
+
+$font_base_size: 1em;
+
+$red1: #ffba00;
+$blue1: #19baea;
+$yellow1: #FFE800;
+$green1: #2ECC71; //#7bba00;
+
+$white: #fff;
+$black: #000;
+$grey: #444;
+
+$blue2: lighten($blue1, 10%);
+$blue3: darken($blue1, 10%);
+
+
+/***************************************
+	= Break Points --> RWD
+***************************************/
+
+$mobile: '(min-width: 30em)';
+$tablet: '(min-width: 47.9375em)';
+$desktop: '(min-width: 60em)';
+$biggest: '(min-width: 75em)';
