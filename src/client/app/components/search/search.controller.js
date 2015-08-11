@@ -10,19 +10,24 @@
   function SearchController(findApi) {
     var vm = this;
     vm.dataAPI = null;
-
-    vm.title = 'Introduce la URL de tu API';
-
     vm.fields = null;
-    vm.listFields = null;
+
+    vm.testArray = ['name', 'sku', 'price'];
+
+    vm.newItem = {};
 
     ////////
 
     vm.find = function(url) {
-      vm.fields = vm.listFields.replace(/ /g,'').split(',');
-
-      return findApi.getApi(url).then(function(data) {
+      return findApi.get(url).then(function(data) {
         vm.dataAPI = data.data;
+        vm.fields = Object.getOwnPropertyNames(data.data[0]);
+      });
+    };
+
+    vm.post = function(item) {
+      return findApi.post(vm.url, item).then(function(data) {
+        console.log(data);
       });
     };
 

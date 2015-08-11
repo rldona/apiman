@@ -3,13 +3,10 @@
 
   <div class="container">
 		<div class="row">
-			<div class="col-md-4">
+			<div class="span12">
 
-      <h2><span class="icon-search" aria-hidden="true"></span> {{vm.title}}</h2>
+      <h2><span class="icon-search" aria-hidden="true"></span> Introduce una URL válida de tu API</h2>
       <input type="text" ng-model="vm.url" placeholder="https://domain/api/v1/products" />
-
-      <h3>Campos a buscar en el API (como mínimo uno) separados por comas:</h3>
-      <input type="text" ng-model="vm.listFields" placeholder="_id, name, surname" />
 
       <a ng-click="vm.find(vm.url)" class="btn btn-primary btn-block">Buscar</a>
 
@@ -22,6 +19,14 @@
           </p>
         </li>
       </ul>
+
+      <p ng-repeat="item in vm.testArray">
+        <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
+      </p>
+
+      {{vm.newItem}}
+
+      <a ng-click="vm.post(vm.newItem)" class="btn btn-primary btn-block">Add</a>
 
       </div>
 		</div>

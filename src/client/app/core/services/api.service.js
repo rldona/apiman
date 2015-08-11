@@ -12,13 +12,18 @@
   function findApi($http) {
 
     return {
-      getApi : getApi,
+      get : get,
+      post: post
     };
 
     ////////
 
-    function getApi(url) {
+    function get(url) {
       return $http.get(url);
+    }
+
+    function post(url, data) {
+      return $http.post(url, data);
     }
 
   }
