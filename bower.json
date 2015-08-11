@@ -1,0 +1,16 @@
+{
+  "name": "github-accounts-finder",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rldona/github-accounts-finder",
+  "authors": [
+    "Raúl López <rldona@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
