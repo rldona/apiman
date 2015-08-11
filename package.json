@@ -1,17 +1,17 @@
 {
-  "name": "github-accounts-finder",
+  "name": "apiman",
   "version": "1.0.0",
   "description": "NOTE: App development in progress...",
   "repository": {
       "type": "git",
-      "url": "git+https://github.com/rldona/github-accounts-finder.git"
+      "url": "git+https://github.com/rldona/apiman.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-      "url": "https://github.com/rldona/github-accounts-finder/issues"
+      "url": "https://github.com/rldona/apiman/issues"
   },
-  "homepage": "https://github.com/rldona/github-accounts-finder#readme",
+  "homepage": "https://github.com/rldona/apiman#readme",
   "dependencies": {
       "body-parser": "^1.8.2",
       "compression": "^1.1.0",
@@ -27,5 +27,5 @@
       "init": "npm install",
       "install": "bower install",
       "start": "node src/server/app.js"
-  },
+  }
 }
