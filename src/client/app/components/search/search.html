@@ -15,7 +15,7 @@
         <ul ng-show="vm.showSearch">
           <li ng-repeat="item in vm.dataAPI">
             <p ng-repeat="field in vm.fields">
-              <span ng-if="field != '__v' && field != '_id'">
+              <span ng-if="field != '__v'">
               {{item[field]}}
               </span>
             </p>
@@ -34,6 +34,20 @@
           </p>
 
           <a ng-click="vm.postData(vm.newItem)" class="btn btn-primary btn-block">Add</a>
+
+        </article>
+
+        <br /><br />
+
+        <article ng-show="vm.showUpdate">
+
+          <p ng-repeat="item in vm.fields">
+            <span ng-if="item != '__v'">
+            <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
+            </span>
+          </p>
+
+          <a ng-click="vm.updateData(vm.newItem)" class="btn btn-primary btn-block">Update</a>
 
         </article>
 

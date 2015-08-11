@@ -23,11 +23,18 @@
         sessionStorage.setItem('url', vm.url);
 
         return findApi.getData(vm.url).then(function(data) {
-          vm.dataAPI = data.data;
-          vm.fields = Object.getOwnPropertyNames(data.data[0]);
 
-          // show section
-          vm.showAdd = true;
+          console.log(data);
+
+          if(data.length > 0) {
+            vm.dataAPI = data.data;
+            vm.fields = Object.getOwnPropertyNames(data.data[0]);
+
+            // show section
+            vm.showAdd = true;
+
+          }
+
         });
       }
     });
@@ -62,6 +69,20 @@
 
     vm.deleteData = function(id) {
       return findApi.deleteData(vm.url + id).then(function(data) {
+        return findApi.getData(vm.url).then(function(data) {
+          vm.dataAPI = data.data;
+          vm.fields = Object.getOwnPropertyNames(data.data[0]);
+
+          if(vm.dataAPI.length === 0) {
+            vm.showAdd = true;
+          }
+
+        });
+      });
+    };
+
+    vm.updateData = function(data) {
+      return findApi.updateData(vm.url + data._id, data).then(function(data) {
         return findApi.getData(vm.url).then(function(data) {
           vm.dataAPI = data.data;
           vm.fields = Object.getOwnPropertyNames(data.data[0]);

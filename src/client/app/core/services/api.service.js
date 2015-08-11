@@ -12,7 +12,8 @@
     return {
       getData : getData,
       postData: postData,
-      deleteData: deleteData
+      deleteData: deleteData,
+      updateData: updateData
     };
 
     ////////
@@ -27,6 +28,10 @@
 
     function deleteData(url) {
       return $http.delete(url);
+    }
+
+    function updateData(url, data) {
+      return $http.put(url, data);
     }
 
   }
