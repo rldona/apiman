@@ -18,7 +18,7 @@
     // guardar URL en sessionStorage()
 
     $scope.$watch('vm.url', function() {
-      vm.showResult = false;
+      // vm.showResult = false;
       vm.errorData.show = false;
       vm.errorData = {};
     });
@@ -30,8 +30,8 @@
         sessionStorage.setItem('url', vm.url);
 
         return findApi.getData(vm.url).then(function(data) {
-          console.log(data);
-          if (data.length > 0) {
+          console.log(data.data.length);
+          if (data.data.length > 0) {
             vm.dataAPI = data.data;
             vm.fields = Object.getOwnPropertyNames(data.data[0]);
           }
@@ -41,8 +41,9 @@
 
         }, function(error) {
           console.log(error);
+          vm.showResult = false;
           vm.errorData.method = error.config.method;
-          vm.errorData.message = error.data;
+          vm.errorData.message = error.data.message || error.data;
           vm.errorData.status = error.status;
           vm.errorData.show = true;
         });
@@ -50,9 +51,22 @@
 
     };
 
-    vm.postData = function(item) {
-      return findApi.postData(vm.url, item).then(function(data) {
-        if(vm.showAdd) {
+    vm.showPostForm = function() {
+      if(vm.postForm) {
+        vm.postForm = false;
+      } else {
+        vm.postForm = true;
+      }
+    };
+    vm.hidePostForm = function() {
+      if(vm.postForm) {
+        vm.postForm = false;
+      }
+    };
+
+    vm.postData = function(obj) {
+      return findApi.postData(vm.url, obj).then(function(data) {
+        if(vm.showResult) {
           return findApi.getData(vm.url).then(function(data) {
             vm.dataAPI = data.data;
             vm.fields = Object.getOwnPropertyNames(data.data[0]);
@@ -61,8 +75,22 @@
       });
     };
 
-    vm.deleteData = function(id) {
-      return findApi.deleteData(vm.url + id).then(function(data) {
+    vm.deleteData = function(id, param) {
+
+      var finalURL = vm.url + id;
+
+      vm.errorData = {};
+
+      if(param === 'input') {
+          // var uri = id.split('/');
+          // var size = uri.length;
+          // id = parseInt(uri[size-1]);
+          finalURL = vm.url;
+      }
+
+      console.log(finalURL);
+
+      return findApi.deleteData(finalURL).then(function(data) {
         return findApi.getData(vm.url).then(function(data) {
           vm.dataAPI = data.data;
           vm.fields = Object.getOwnPropertyNames(data.data[0]);

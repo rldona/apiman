@@ -30,6 +30,60 @@ input {
   max-width: 50%;
   text-align: center;
   cursor: pointer;
+  &.gray {
+    background: #A3B1BC!important;
+    background-color: #A3B1BC!important;
+  }
+  &.get {
+    background: rgba(112, 216, 95, 0.6) !important;
+    &:hover {
+      background: #70D85F !important;
+    }
+  }
+  &.post {
+    background: rgba(163, 95, 216, 0.6) !important;
+    &:hover {
+      background: #A35FD8 !important;
+    }
+  }
+  &.put {
+    background: rgba(216, 172, 95, 0.6) !important;
+    &:hover {
+      background: #D8AC5F !important;
+    }
+  }
+  &.delete {
+    background: rgba(216, 95, 95, 0.6) !important;
+    &:hover {
+      background: #D85F5F!important;
+    }
+  }
+  &.main {
+    position: absolute;
+    right: 19px;
+    top: 16px;
+    border-radius: 0 10px 10px 0;
+    padding: 15px;
+    border: 1px solid #1A88BB;
+    background-color: #2799CE;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    &:hover {
+      background: #3696C3;
+    }
+  }
+  &.opt {
+    background-color: rgb(96, 142, 178);
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.9em;
+    border-radius: 8px;
+  }
+
 }
 
 .right {
@@ -46,7 +100,7 @@ input {
 
 header {
   background: #242424;
-  padding: 2em;
+  padding: 2em 1em;
   color: #FFF;
   h1 {
     font: normal 600 1.2em 'Monserrat', arial;
@@ -62,19 +116,20 @@ header {
 ***************************************/
 
 #search {
-  padding: 4em 0;
-  background-color:  #75AEDD;
-  .btn {
-    position: absolute;
-    right: 19px;
-    top: 16px;
-    border-radius: 0 10px 10px 0;
-    padding: 15px;
-    border: 1px solid #1A88BB;
-    background-color: #2799CE;
-    color: #FFF;
-    text-transform: uppercase;
-    font-weight: 600;
+  padding: 6em 1em;
+  background-color: #75AEDD;
+  ul {
+    overflow: hidden;
+    width: 60%;
+    margin: 1em auto 0.5em;
+    li {
+      float: left;
+      width: 28.88888%;
+      margin-right: 6.666666%;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
   h2 {
     font: normal 400 1.2em 'Monserrat', arial;
@@ -82,19 +137,21 @@ header {
     margin-bottom: 1em;
   }
   #search-main {
-    padding: 1em;
-    background-color: rgba(107, 157, 198, 0.8);
-    border-radius: 20px;
+    padding: 1em 1em 0.5em 1em;
+    background-color: rgba(107, 157, 198, 0.5);
+    border-radius: 10px;
     position: relative;
-    width: 80%;
+    width: 768px;
+    max-width: 100%;
     margin: 0 auto;
     input {
-      width: 95%;
-      padding: 0.85em;
+      // width: 95%;
+      padding: 1em;
       border: 0;
-      font: normal 300 1.1em "Open Sans";
-      border-radius: 10px 0 0 10px;
+      font: normal 300 1em "Open Sans";
+      border-radius: 5px;
       box-shadow: inset 0 0 5px 0px #777;
+      text-align: center;
     }
   }
 }
@@ -111,20 +168,140 @@ header {
 }
 
 /***************************************
+  = FORM POST
+***************************************/
+
+#form-post {
+  padding: 2.5em 1.5em;
+  background-color: #F9F9F9;
+  border-bottom: 5px solid #E3E3E6;
+  h2 {
+    font-weight: 300;
+    margin-bottom: 1em;
+  }
+  article {
+    position: relative;
+    max-width: 768px;
+    idth: 100%;
+    margin: 0 auto;
+    input {
+      padding: 0.5em 1em;
+      border: 0;
+      font: normal 300 0.8em "Open Sans";
+      border-radius: 5px;
+      box-shadow: inset 0 0 3px 0px #777;
+      margin-bottom: 0.5em;
+    }
+    a.right, a.left {
+      width: 20%;
+      margin-top: 1em;
+    }
+    a.close {
+      position: absolute;
+      top: -40px;
+      right: 0px;
+      width: 30px;
+      height: 30px;
+      border-radius: 0;
+      font-weight: 400;
+      text-transform: lowercase;
+      span {
+        @include centrar();
+      }
+    }
+  }
+}
+
+/***************************************
   = RESULTS
 ***************************************/
 
 #results {
-  padding: 4em;
+  padding: 1em;
+  border: 1px solid #ededf0;
   article {
-    width: 80%;
+    // width: 80%;
     margin: 0 auto;
-    background: #FFF;
-    padding: 2em;
-    border: 1px solid #ededf0;
-    border-bottom: 1px solid #dcdce0;
+    ul {
+      li {
+        border-bottom: 1px solid #f4f4f6;
+        font-size: 0.8em;
+        position: relative;
+        padding: 5px;
+        background-color: #FFF;
+        a {
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: rgba(216,95,95,0.6);
+          font-weight: 600;
+          height: 100%;
+          text-transform: uppercase;
+          border-left: 1px solid #F4F4F6;
+          &:hover {
+            background: #D85F5D;
+            color: #FFF;
+          }
+          span {
+            @include centrar();
+          }
+        }
+        p {
+          position: relative;
+          overflow: hidden;
+          // padding: 1px;
+          #field {
+            background-color: #FFF;
+            padding: 1px 15px;
+            display: block;
+            float: left;
+            width: 20%;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #444;
+          }
+          #item_field {
+            float: left;
+            display: block;
+            background-color: #FFF;
+            width: 80%;
+            padding: 1px 15px;
+            border-left: 1px solid #F4F4F6;
+          }
+        }
+      }
+    }
   }
 }
+
+/***************************************
+  = FOOTER
+***************************************/
+
+// html, body {
+//   height: 100%;
+// }
+//
+// #page {
+//   min-height: 100%;
+//   margin-bottom: -200px;
+//   &:after {
+//     height: 200px;
+//     content: "";
+//     display: block;
+// 	}
+// }
+//
+// footer {
+//   text-align: center;
+//   background: #242424;
+// 	height: 200px;
+// 	padding: 0 1em;
+//   a {
+//     color: #FFF;
+//     @include centrar();
+//   }
+// }
 
 /***************************************
   = ANIMATIONS

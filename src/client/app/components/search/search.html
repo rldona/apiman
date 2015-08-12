@@ -11,6 +11,8 @@
   </div>
 </header>
 
+<a href="https://github.com/rldona"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
 <!-- TODO: crear una directiva -->
 <section id="search">
 
@@ -20,7 +22,13 @@
 
         <div id="search-main">
           <input type="text" ng-model="vm.url" placeholder="Example: https://domain/api/v1/products" />
-          <a ng-click="vm.getData()" class="btn right">Send</a>
+          <!-- <a ng-click="vm.getData()" class="btn main right">Send</a> -->
+          <ul>
+            <li><a ng-click="vm.getData()" class="btn opt get">GET</a></li>
+            <li><a ng-click="vm.showPostForm()" class="btn opt post">POST</a></li>
+            <li><a ng-click="vm.getData()" class="btn opt put">PUT</a></li>
+            <!-- <li><a ng-click="vm.deleteData(vm.url, 'input')" class="btn opt delete">DELETE</a></li> -->
+          </ul>
         </div>
 
       </div>
@@ -41,33 +49,60 @@
   </div>
 </section>
 
-<section id="results">
+<section id="form-post" ng-show="vm.postForm">
+  <div class="container">
+  	<div class="row">
+  		<div class="span12">
+
+        <article>
+
+          <h2>Add as many elements as are necessary for your object</h2>
+
+          <input type="text" ng-model="objFormPost.name" placeholder="Field 1" />
+          <input type="text" ng-model="objFormPost.sku" placeholder="Field 2" />
+          <input type="text" ng-model="objFormPost.price" placeholder="Field 3" />
+
+          {{objFormPost}}
+
+          <a ng-click="vm.addItem()" class="btn opt left gray">Add Item</a>
+          <a ng-click="vm.postData(objFormPost)" class="btn opt right">Send</a>
+          <a ng-click="vm.hidePostForm()" class="btn opt delete close"><span>x</span></a>
+
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results" ng-show="vm.showResult">
 
   <div class="container">
   	<div class="row">
   		<div class="span12">
 
-        <article ng-show="vm.showResult">
+        <article>
+
           <ul ng-if="vm.dataAPI">
             <li ng-repeat="item in vm.dataAPI">
-              <p ng-repeat="field in vm.fields">
-                <span ng-if="field != '__v'">
-                {{item[field]}}
-                </span>
+              <p ng-repeat="field in vm.fields" ng-if="field != '__v'">
+                <span id="field">{{field}}</span> <span id="item_field">{{item[field]}}</span>
               </p>
-              <a ng-click="vm.deleteData(item._id)" class="btn btn-primary btn-block">Delete</a>
+              <a ng-click="vm.deleteData(item._id)" id="removeField" class="btn btn-primary btn-block"><span>Delete</span></a>
             </li>
           </ul>
+
           <div ng-if="!vm.dataAPI">
             <p>[ ]</p>
           </div>
+
         </article>
 
       </div>
     </div>
   </div>
 
-  <br /><br />
+  <!-- <br /><br />
 
   <article ng-show="vm.showAdd">
 
@@ -93,6 +128,6 @@
 
     <a ng-click="vm.updateData(vm.newItem)" class="btn btn-primary btn-block">Update</a>
 
-  </article>
+  </article> -->
 
 </section>
