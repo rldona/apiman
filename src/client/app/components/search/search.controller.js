@@ -14,46 +14,40 @@
     vm.fields = null;
     vm.testArray = null;
     vm.newItem = {};
-
+    vm.errorData = {};
     // guardar URL en sessionStorage()
 
     $scope.$watch('vm.url', function() {
-      if(vm.url) {
-
-        sessionStorage.setItem('url', vm.url);
-
-        return findApi.getData(vm.url).then(function(data) {
-
-          console.log(data);
-
-          if(data.length > 0) {
-            vm.dataAPI = data.data;
-            vm.fields = Object.getOwnPropertyNames(data.data[0]);
-
-            // show section
-            vm.showAdd = true;
-
-          }
-
-        });
-      }
+      vm.showResult = false;
+      vm.errorData.show = false;
+      vm.errorData = {};
     });
 
     ////////
 
     vm.getData = function() {
       if(vm.url) {
-
-        vm.showSearch = true;
+        sessionStorage.setItem('url', vm.url);
 
         return findApi.getData(vm.url).then(function(data) {
-          // vm.dataAPI = data.data;
-          // vm.fields = Object.getOwnPropertyNames(data.data[0]);
+          console.log(data);
+          if (data.length > 0) {
+            vm.dataAPI = data.data;
+            vm.fields = Object.getOwnPropertyNames(data.data[0]);
+          }
 
           // show section
-          // vm.showSearch = true;
+          vm.showResult = true;
+
+        }, function(error) {
+          console.log(error);
+          vm.errorData.method = error.config.method;
+          vm.errorData.message = error.data;
+          vm.errorData.status = error.status;
+          vm.errorData.show = true;
         });
       }
+
     };
 
     vm.postData = function(item) {

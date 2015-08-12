@@ -1,3 +1,16 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+
+        <h1>{ Apiman }</h1>
+        <h2>Add the URL of your API and manage your GET, POST, PUT & DELETE</h2>
+
+      </div>
+    </div>
+  </div>
+</header>
+
 <!-- TODO: crear una directiva -->
 <section id="search">
 
@@ -5,55 +18,81 @@
   	<div class="row">
   		<div class="span12">
 
-        <h2><span class="icon-search" aria-hidden="true"></span> Enter a valid URL of your API</h2>
-        <input type="text" ng-model="vm.url" placeholder="https://domain/api/v1/products" />
-
-        <a ng-click="vm.getData()" class="btn btn-primary btn-block">Search</a>
-
-        <br /><br />
-
-        <ul ng-show="vm.showSearch">
-          <li ng-repeat="item in vm.dataAPI">
-            <p ng-repeat="field in vm.fields">
-              <span ng-if="field != '__v'">
-              {{item[field]}}
-              </span>
-            </p>
-            <a ng-click="vm.deleteData(item._id)" class="btn btn-primary btn-block">Delete</a>
-          </li>
-        </ul>
-
-        <br /><br />
-
-        <article ng-show="vm.showAdd">
-
-          <p ng-repeat="item in vm.fields">
-            <span ng-if="item != '__v' && item != '_id'">
-            <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
-            </span>
-          </p>
-
-          <a ng-click="vm.postData(vm.newItem)" class="btn btn-primary btn-block">Add</a>
-
-        </article>
-
-        <br /><br />
-
-        <article ng-show="vm.showUpdate">
-
-          <p ng-repeat="item in vm.fields">
-            <span ng-if="item != '__v'">
-            <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
-            </span>
-          </p>
-
-          <a ng-click="vm.updateData(vm.newItem)" class="btn btn-primary btn-block">Update</a>
-
-        </article>
+        <div id="search-main">
+          <input type="text" ng-model="vm.url" placeholder="Example: https://domain/api/v1/products" />
+          <a ng-click="vm.getData()" class="btn right">Send</a>
+        </div>
 
       </div>
   	</div>
   </div>
 
+</section>
+
+<section id="errors" ng-show="vm.errorData.show">
+  <div class="container">
+  	<div class="row">
+  		<div class="span12">
+
+        {{vm.errorData.method}} | {{vm.errorData.status}} | {{vm.errorData.message}}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+
+  <div class="container">
+  	<div class="row">
+  		<div class="span12">
+
+        <article ng-show="vm.showResult">
+          <ul ng-if="vm.dataAPI">
+            <li ng-repeat="item in vm.dataAPI">
+              <p ng-repeat="field in vm.fields">
+                <span ng-if="field != '__v'">
+                {{item[field]}}
+                </span>
+              </p>
+              <a ng-click="vm.deleteData(item._id)" class="btn btn-primary btn-block">Delete</a>
+            </li>
+          </ul>
+          <div ng-if="!vm.dataAPI">
+            <p>[ ]</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <br /><br />
+
+  <article ng-show="vm.showAdd">
+
+    <p ng-repeat="item in vm.fields">
+      <span ng-if="item != '__v' && item != '_id'">
+      <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
+      </span>
+    </p>
+
+    <a ng-click="vm.postData(vm.newItem)" class="btn btn-primary btn-block">Add</a>
+
+  </article>
+
+  <br /><br />
+
+  <article ng-show="vm.showUpdate">
+
+    <p ng-repeat="item in vm.fields">
+      <span ng-if="item != '__v'">
+      <input type="text" ng-model="vm.newItem[item]" placeholder="{{item}}" />
+      </span>
+    </p>
+
+    <a ng-click="vm.updateData(vm.newItem)" class="btn btn-primary btn-block">Update</a>
+
+  </article>
 
 </section>
