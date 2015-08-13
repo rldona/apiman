@@ -30,6 +30,7 @@ input {
   max-width: 50%;
   text-align: center;
   cursor: pointer;
+  @include animation(all, 0.1s, ease-out);
   &.gray {
     background: #A3B1BC!important;
     background-color: #A3B1BC!important;
@@ -188,6 +189,8 @@ header {
       @media(max-width: 768px) {
         border-radius: 0;
         box-shadow: inset 0 0 0px 0px #777;
+        text-align: left;
+        font-size: 0.9em;
       }
     }
   }
@@ -301,6 +304,9 @@ header {
             font-weight: 600;
             text-transform: uppercase;
             color: #444;
+            @media(max-width: 768px) {
+              padding: 1px 5px;
+            }
           }
           #item_field {
             float: left;
