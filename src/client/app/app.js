@@ -9,6 +9,7 @@
 
       // angular services
       'core.services',
+      'core.utils',
 
       // app components
       'app.search'

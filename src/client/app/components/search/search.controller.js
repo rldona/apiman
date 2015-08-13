@@ -5,9 +5,9 @@
     .module('app')
     .controller('SearchCtrl', SearchController);
 
-  SearchController.$inject = ['$scope', 'findApi'];
+  SearchController.$inject = ['$scope', 'findApi', 'utils'];
 
-  function SearchController($scope, findApi) {
+  function SearchController($scope, findApi, utils) {
     var vm = this;
     vm.url = sessionStorage.getItem('url') || null;
     vm.dataAPI = null;
@@ -23,14 +23,18 @@
       vm.errorData = {};
     });
 
+    vm.url = utils.formatURL(vm.url);
+
     ////////
 
     vm.getData = function() {
+
+      vm.url = utils.formatURL(vm.url);
+
       if(vm.url) {
         sessionStorage.setItem('url', vm.url);
 
         return findApi.getData(vm.url).then(function(data) {
-          console.log(data.data.length);
           if (data.data.length > 0) {
             vm.dataAPI = data.data;
             vm.fields = Object.getOwnPropertyNames(data.data[0]);
@@ -40,7 +44,6 @@
           vm.showResult = true;
 
         }, function(error) {
-          console.log(error);
           vm.showResult = false;
           vm.errorData.method = error.config.method;
           vm.errorData.message = error.data.message || error.data;

@@ -103,7 +103,7 @@ input {
 ***************************************/
 
 header {
-  background: #242424;
+  background: #353a45;
   padding: 2em 1em;
   color: #FFF;
   @media(max-width: 768px) {
@@ -258,7 +258,6 @@ header {
 
 #results {
   padding: 1em;
-  border: 1px solid #ededf0;
   @media(max-width: 768px) {
     padding: 0.5em;
     border: 0 solid #ededf0;
@@ -274,6 +273,7 @@ header {
         padding: 5px;
         background-color: #FFF;
         margin-bottom: 5px;
+        box-shadow: 0 0 10px 1px #DDD;
         a {
           position: absolute;
           top: 0;
