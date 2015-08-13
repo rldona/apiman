@@ -129,7 +129,7 @@ header {
 ***************************************/
 
 #search {
-  padding: 6em 1em;
+  padding: 3em 1em 4em;
   background: #00f;
   background: #46bddb;
   background: -webkit-gradient(left bottom,right top,color-stop(20%,#46bddb),color-stop(60%,#4889f8),color-stop(100%,#9372bf));
@@ -165,6 +165,12 @@ header {
     font: normal 400 1.2em 'Monserrat', arial;
     color: #FFF;
     margin-bottom: 1em;
+    &.slogan {
+      width: 768px;
+      max-width: 100%;
+      margin: 0 auto 2em;
+      text-align: center;
+    }
   }
   #search-main {
     padding: 1em 1em 0.5em 1em;
@@ -185,7 +191,6 @@ header {
       font: normal 300 1em "Open Sans";
       border-radius: 5px;
       box-shadow: inset 0 0 5px 0px #777;
-      text-align: center;
       @media(max-width: 768px) {
         border-radius: 0;
         box-shadow: inset 0 0 0px 0px #777;

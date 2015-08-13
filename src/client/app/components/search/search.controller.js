@@ -15,7 +15,12 @@
     vm.testArray = null;
     vm.newItem = {};
     vm.errorData = {};
-    // guardar URL en sessionStorage()
+
+    vm.itemsPost = [];
+
+    vm.objFormPost = {
+      value: ''
+    };
 
     $scope.$watch('vm.url', function() {
       // vm.showResult = false;
@@ -23,13 +28,9 @@
       vm.errorData = {};
     });
 
-    vm.url = utils.formatURL(vm.url);
-
     ////////
 
     vm.getData = function() {
-
-      vm.url = utils.formatURL(vm.url);
 
       if(vm.url) {
         sessionStorage.setItem('url', vm.url);
@@ -67,6 +68,16 @@
       }
     };
 
+    vm.addItem = function() {
+
+      console.log(vm.itemsPost);
+
+      vm.itemsPost.push({
+        key: '',
+        value: ''
+      });
+    };
+
     vm.postData = function(obj) {
       return findApi.postData(vm.url, obj).then(function(data) {
         if(vm.showResult) {
@@ -79,19 +90,16 @@
     };
 
     vm.deleteData = function(id, param) {
+      var finalURL = null;
 
-      var finalURL = vm.url + id;
+      vm.url = utils.formatURL(vm.url);
+      finalURL = vm.url + id;
 
       vm.errorData = {};
 
       if(param === 'input') {
-          // var uri = id.split('/');
-          // var size = uri.length;
-          // id = parseInt(uri[size-1]);
           finalURL = vm.url;
       }
-
-      console.log(finalURL);
 
       return findApi.deleteData(finalURL).then(function(data) {
         return findApi.getData(vm.url).then(function(data) {
