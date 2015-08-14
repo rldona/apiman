@@ -69,9 +69,6 @@
     };
 
     vm.addItem = function() {
-
-      console.log(vm.itemsPost);
-
       vm.itemsPost.push({
         key: '',
         value: ''
