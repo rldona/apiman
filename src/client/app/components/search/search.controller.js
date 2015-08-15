@@ -9,21 +9,14 @@
 
   function SearchController($scope, findApi, utils) {
     var vm = this;
+
     vm.url = sessionStorage.getItem('url') || null;
     vm.dataAPI = null;
     vm.fields = null;
-    vm.testArray = null;
-    vm.newItem = {};
     vm.errorData = {};
-
     vm.itemsPost = [];
 
-    vm.objFormPost = {
-      value: ''
-    };
-
     $scope.$watch('vm.url', function() {
-      // vm.showResult = false;
       vm.errorData.show = false;
       vm.errorData = {};
     });
@@ -31,19 +24,16 @@
     ////////
 
     vm.getData = function() {
-
       if(vm.url) {
         sessionStorage.setItem('url', vm.url);
 
         return findApi.getData(vm.url).then(function(data) {
           if (data.data.length > 0) {
             vm.dataAPI = data.data;
-            vm.fields = Object.getOwnPropertyNames(data.data[0]);
+            vm.fields = data.data[0] ? Object.getOwnPropertyNames(data.data[0]) : null;
           }
-
           // show section
           vm.showResult = true;
-
         }, function(error) {
           vm.showResult = false;
           vm.errorData.method = error.config.method;
@@ -52,7 +42,6 @@
           vm.errorData.show = true;
         });
       }
-
     };
 
     vm.showPostForm = function() {
@@ -75,15 +64,28 @@
       });
     };
 
+    vm.removeItem = function() {
+      vm.itemsPost.pop();
+    };
+
     vm.postData = function(obj) {
+      var newObj = {};
+
+      for(var i=0, size = vm.itemsPost.length; i < size; i++) {
+          newObj[vm.itemsPost[i].key] = vm.itemsPost[i].value;
+      }
+
+      obj = obj || newObj;
+
       return findApi.postData(vm.url, obj).then(function(data) {
         if(vm.showResult) {
           return findApi.getData(vm.url).then(function(data) {
             vm.dataAPI = data.data;
-            vm.fields = Object.getOwnPropertyNames(data.data[0]);
+            vm.fields = data.data[0] ? Object.getOwnPropertyNames(data.data[0]) : null;
           });
         }
       });
+
     };
 
     vm.deleteData = function(id, param) {
@@ -101,12 +103,8 @@
       return findApi.deleteData(finalURL).then(function(data) {
         return findApi.getData(vm.url).then(function(data) {
           vm.dataAPI = data.data;
-          vm.fields = Object.getOwnPropertyNames(data.data[0]);
-
-          if(vm.dataAPI.length === 0) {
-            vm.showAdd = true;
-          }
-
+          vm.fields = data.data[0] ? Object.getOwnPropertyNames(data.data[0]) : null;
+          vm.showAdd = vm.dataAPI.length ? true : false;
         });
       });
     };
@@ -115,7 +113,7 @@
       return findApi.updateData(vm.url + data._id, data).then(function(data) {
         return findApi.getData(vm.url).then(function(data) {
           vm.dataAPI = data.data;
-          vm.fields = Object.getOwnPropertyNames(data.data[0]);
+          vm.fields = data.data[0] ? Object.getOwnPropertyNames(data.data[0]) : null;
         });
       });
     };
