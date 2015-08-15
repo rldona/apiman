@@ -57,17 +57,18 @@
 
         <article>
 
-          <h2>Add as many elements as are necessary for your object</h2>
+          <h2>Add as many items as are necessary for your object</h2>
+
+          <!-- <input type="text" id="obj-key" ng-model="objFormPost.key_init" placeholder="Key {{$index}}" />
+          <input type="text" id="obj-value" ng-model="objFormPost.value_init" placeholder="Value {{$index}}" /> -->
 
           <div ng-repeat="item in vm.itemsPost">
-            <input type="text" ng-model="objFormPost.name" placeholder="Field 1" />
-            <input type="text" ng-model="objFormPost.sku" placeholder="Field 2" />
-            <input type="text" ng-model="objFormPost.price" placeholder="Field 3" />
+            <input type="text" class="obj-key" ng-model="item.key" placeholder="Key {{$index}}" />
+            <input type="text" class="obj-value" ng-model="item.value" placeholder="Value {{$index}}" />
           </div>
 
-          {{vm.itemsPost}}
-
-          <a ng-click="vm.addItem()" class="btn opt left gray">New item</a>
+          <a ng-click="vm.addItem()" class="btn opt left gray">Add item</a>
+          <a ng-click="vm.removeItem()" class="btn opt left delete remove-item">Remove item</a>
           <a ng-click="vm.postData(objFormPost)" class="btn opt right">Send</a>
           <a ng-click="vm.hidePostForm()" class="btn opt delete close"><span>x</span></a>
 
