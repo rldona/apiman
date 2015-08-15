@@ -14,6 +14,13 @@ body {
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 input {
@@ -58,6 +65,9 @@ input {
     &:hover {
       background: #D85F5F!important;
     }
+  }
+  &.remove-item {
+    margin-left: 1em;
   }
   &.main {
     position: absolute;
@@ -118,7 +128,7 @@ header {
     @media(max-width: 768px) {
       float: left;
       width: 80%;
-      margin-top: 1.5em;
+      margin-top: .5em;
       clear: both;
     }
   }
@@ -170,6 +180,9 @@ header {
       max-width: 100%;
       margin: 0 auto 2em;
       text-align: center;
+      @media(max-width: 767px) {
+        margin: 0 auto .5em;
+      }
     }
   }
   #search-main {
@@ -229,6 +242,15 @@ header {
     max-width: 768px;
     idth: 100%;
     margin: 0 auto;
+    .obj-key,
+    .obj-value {
+      width: 47.5%;
+      float: left;
+      margin-right: 5%;
+    }
+    .obj-value {
+      margin-right: 0;
+    }
     input {
       padding: 0.5em 1em;
       border: 0;
