@@ -98,16 +98,14 @@
       vm.itemsPost.pop();
     };
 
-    vm.postData = function(obj) {
+    vm.postData = function() {
       var newObj = {};
 
       for(var i=0, size = vm.itemsPost.length; i < size; i++) {
           newObj[vm.itemsPost[i].key] = vm.itemsPost[i].value;
       }
 
-      obj = obj || newObj;
-
-      return findApi.postData(vm.url, obj).then(function(data) {
+      return findApi.postData(vm.url, newObj).then(function(data) {
         if(vm.showResult) {
           return findApi.getData(vm.url).then(function(data) {
             vm.dataAPI = data.data;
@@ -139,14 +137,12 @@
       });
     };
 
-    vm.putData = function(data) {
+    vm.putData = function() {
       var newObj = {};
 
       for(var i=0, size = vm.itemsPost.length; i < size; i++) {
           newObj[vm.itemsPost[i].key] = vm.itemsPost[i].value;
       }
-
-      console.log(newObj);
 
       return findApi.updateData(vm.url, newObj).then(function(data) {
         vm.url = sessionStorage.getItem('url');
