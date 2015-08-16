@@ -130,6 +130,7 @@ header {
       width: 80%;
       margin-top: .5em;
       clear: both;
+      font-size: 0.8em;
     }
   }
 }
@@ -182,6 +183,9 @@ header {
       text-align: center;
       @media(max-width: 767px) {
         margin: 0 auto .5em;
+        text-align: left;
+        padding: 0 1em;
+        font-size: 1em;
       }
     }
   }

@@ -14,6 +14,7 @@
     vm.dataAPI = null;
     vm.fields = null;
     vm.errorData = {};
+    vm.itemInit = {key:'', value:''};
     vm.itemsPost = [];
 
     $scope.$watch('vm.url', function() {
@@ -58,6 +59,10 @@
     };
 
     vm.addItem = function() {
+      if(vm.itemsPost.length === 0) {
+        vm.itemsPost.push(vm.itemInit);
+      }
+
       vm.itemsPost.push({
         key: '',
         value: ''
