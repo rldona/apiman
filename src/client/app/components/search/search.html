@@ -27,7 +27,7 @@
           <ul>
             <li><a ng-click="vm.getData()" class="btn opt get">GET</a></li>
             <li><a ng-click="vm.showPostForm()" class="btn opt post">POST</a></li>
-            <li><a ng-click="vm.getData()" class="btn opt put">PUT</a></li>
+            <li><a ng-click="vm.showPutForm()" class="btn opt put">PUT</a></li>
             <!-- <li><a ng-click="vm.deleteData(vm.url, 'input')" class="btn opt delete">DELETE</a></li> -->
           </ul>
         </div>
@@ -71,8 +71,39 @@
 
           <a ng-click="vm.addItem()" class="btn opt left gray">Add item</a>
           <a ng-click="vm.removeItem()" ng-show="vm.itemsPost.length > 1" class="btn opt left delete remove-item">Remove item</a>
-          <a ng-click="vm.postData(objFormPost)" class="btn opt right">Send</a>
+          <a ng-click="vm.postData()" class="btn opt right">Send</a>
           <a ng-click="vm.hidePostForm()" class="btn opt delete close"><span>x</span></a>
+
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="form-put" ng-show="vm.putForm">
+  <div class="container">
+  	<div class="row">
+  		<div class="span12">
+
+        <article>
+
+          <h2>Updates the attributes of any item (Concatenates the ID in the URL search)</h2>
+
+          <input type="text" class="obj-key" ng-model="vm.itemInit.key" placeholder="Key 0" />
+          <input type="text" class="obj-value" ng-model="vm.itemInit.value" placeholder="Value 0" />
+
+          <div ng-repeat="item in vm.itemsPost">
+            <span ng-if="$index > 0">
+              <input type="text" class="obj-key" ng-model="item.key" placeholder="Key {{$index+1}}" />
+              <input type="text" class="obj-value" ng-model="item.value" placeholder="Value {{$index+1}}" />
+            </span>
+          </div>
+
+          <a ng-click="vm.addItem()" class="btn opt left gray">Add item</a>
+          <a ng-click="vm.removeItem()" ng-show="vm.itemsPost.length > 1" class="btn opt left delete remove-item">Remove item</a>
+          <a ng-click="vm.putData()" class="btn opt right">Send</a>
+          <a ng-click="vm.hidePutForm()" class="btn opt delete close"><span>x</span></a>
 
         </article>
 

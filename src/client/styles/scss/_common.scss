@@ -15,12 +15,12 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
 
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  // -webkit-touch-callout: none;
+  // -webkit-user-select: none;
+  // -khtml-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
 }
 
 input {
@@ -233,7 +233,7 @@ header {
   = FORM POST
 ***************************************/
 
-#form-post {
+#form-post, #form-put {
   padding: 2.5em 1.5em;
   background-color: #F9F9F9;
   border-bottom: 5px solid #E3E3E6;
@@ -255,6 +255,7 @@ header {
     .obj-value {
       margin-right: 0;
     }
+
     input {
       padding: 0.5em 1em;
       border: 0;

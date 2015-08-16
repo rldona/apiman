@@ -46,6 +46,11 @@
     };
 
     vm.showPostForm = function() {
+
+      if(vm.putForm) {
+        vm.putForm = false;
+      }
+
       if(vm.postForm) {
         vm.postForm = false;
       } else {
@@ -55,6 +60,26 @@
     vm.hidePostForm = function() {
       if(vm.postForm) {
         vm.postForm = false;
+      }
+    };
+
+    vm.showPutForm = function() {
+
+      vm.url = utils.formatURL(vm.url);
+
+      if(vm.postForm) {
+        vm.postForm = false;
+      }
+
+      if(vm.putForm) {
+        vm.putForm = false;
+      } else {
+        vm.putForm = true;
+      }
+    };
+    vm.hidePutForm = function() {
+      if(vm.putForm) {
+        vm.putForm = false;
       }
     };
 
@@ -114,8 +139,17 @@
       });
     };
 
-    vm.updateData = function(data) {
-      return findApi.updateData(vm.url + data._id, data).then(function(data) {
+    vm.putData = function(data) {
+      var newObj = {};
+
+      for(var i=0, size = vm.itemsPost.length; i < size; i++) {
+          newObj[vm.itemsPost[i].key] = vm.itemsPost[i].value;
+      }
+
+      console.log(newObj);
+
+      return findApi.updateData(vm.url, newObj).then(function(data) {
+        vm.url = sessionStorage.getItem('url');
         return findApi.getData(vm.url).then(function(data) {
           vm.dataAPI = data.data;
           vm.fields = data.data[0] ? Object.getOwnPropertyNames(data.data[0]) : null;
