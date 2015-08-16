@@ -47,6 +47,9 @@
 
     vm.showPostForm = function() {
 
+      vm.itemInit = {key:'', value:''};
+      vm.itemsPost = [];
+
       if(vm.putForm) {
         vm.putForm = false;
       }
@@ -64,6 +67,9 @@
     };
 
     vm.showPutForm = function() {
+
+      vm.itemInit = {key:'', value:''};
+      vm.itemsPost = [];
 
       vm.url = utils.formatURL(vm.url);
 
@@ -84,10 +90,6 @@
     };
 
     vm.addItem = function() {
-      if(vm.itemsPost.length === 0) {
-        vm.itemsPost.push(vm.itemInit);
-      }
-
       vm.itemsPost.push({
         key: '',
         value: ''
@@ -101,7 +103,12 @@
     vm.postData = function() {
       var newObj = {};
 
+      if(vm.itemsPost.length === 0) {
+        newObj[vm.itemInit.key] = vm.itemInit.value;
+      }
+
       for(var i=0, size = vm.itemsPost.length; i < size; i++) {
+          newObj[vm.itemInit.key] = vm.itemInit.value;
           newObj[vm.itemsPost[i].key] = vm.itemsPost[i].value;
       }
 
@@ -140,12 +147,17 @@
     vm.putData = function() {
       var newObj = {};
 
+      if(vm.itemsPost.length === 0) {
+        newObj[vm.itemInit.key] = vm.itemInit.value;
+      }
+
       for(var i=0, size = vm.itemsPost.length; i < size; i++) {
+          newObj[vm.itemInit.key] = vm.itemInit.value;
           newObj[vm.itemsPost[i].key] = vm.itemsPost[i].value;
       }
 
-      return findApi.updateData(vm.url, newObj).then(function(data) {
-        vm.url = sessionStorage.getItem('url');
+      return findApi.updateData(vm.url + vm.idPut, newObj).then(function(data) {
+        // vm.url = sessionStorage.getItem('url');
         return findApi.getData(vm.url).then(function(data) {
           vm.dataAPI = data.data;
           vm.fields = data.data[0] ? Object.getOwnPropertyNames(data.data[0]) : null;

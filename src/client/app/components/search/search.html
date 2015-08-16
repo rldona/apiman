@@ -57,20 +57,18 @@
 
         <article>
 
-          <h2>Add as many items as are necessary for your object</h2>
+          <h2>Add as many items as are necessary for your object:</h2>
 
           <input type="text" class="obj-key" ng-model="vm.itemInit.key" placeholder="Key 0" />
           <input type="text" class="obj-value" ng-model="vm.itemInit.value" placeholder="Value 0" />
 
           <div ng-repeat="item in vm.itemsPost">
-            <span ng-if="$index > 0">
-              <input type="text" class="obj-key" ng-model="item.key" placeholder="Key {{$index+1}}" />
-              <input type="text" class="obj-value" ng-model="item.value" placeholder="Value {{$index+1}}" />
-            </span>
+            <input type="text" class="obj-key" ng-model="item.key" placeholder="Key {{$index+1}}" />
+            <input type="text" class="obj-value" ng-model="item.value" placeholder="Value {{$index+1}}" />
           </div>
 
           <a ng-click="vm.addItem()" class="btn opt left gray">Add item</a>
-          <a ng-click="vm.removeItem()" ng-show="vm.itemsPost.length > 1" class="btn opt left delete remove-item">Remove item</a>
+          <a ng-click="vm.removeItem()" ng-show="vm.itemsPost.length > 0" class="btn opt left delete remove-item">Remove item</a>
           <a ng-click="vm.postData()" class="btn opt right">Send</a>
           <a ng-click="vm.hidePostForm()" class="btn opt delete close"><span>x</span></a>
 
@@ -88,20 +86,20 @@
 
         <article>
 
-          <h2>Updates the attributes of any item (Concatenates the ID in the URL search)</h2>
+          <h2>Updates the attributes of any item:</h2>
+
+          <input type="text" class="obj-id" ng-model="vm.idPut" placeholder="ID to UPDATE" />
 
           <input type="text" class="obj-key" ng-model="vm.itemInit.key" placeholder="Key 0" />
           <input type="text" class="obj-value" ng-model="vm.itemInit.value" placeholder="Value 0" />
 
           <div ng-repeat="item in vm.itemsPost">
-            <span ng-if="$index > 0">
-              <input type="text" class="obj-key" ng-model="item.key" placeholder="Key {{$index+1}}" />
-              <input type="text" class="obj-value" ng-model="item.value" placeholder="Value {{$index+1}}" />
-            </span>
+            <input type="text" class="obj-key" ng-model="item.key" placeholder="Key {{$index+1}}" />
+            <input type="text" class="obj-value" ng-model="item.value" placeholder="Value {{$index+1}}" />
           </div>
 
           <a ng-click="vm.addItem()" class="btn opt left gray">Add item</a>
-          <a ng-click="vm.removeItem()" ng-show="vm.itemsPost.length > 1" class="btn opt left delete remove-item">Remove item</a>
+          <a ng-click="vm.removeItem()" ng-show="vm.itemsPost.length > 0" class="btn opt left delete remove-item">Remove item</a>
           <a ng-click="vm.putData()" class="btn opt right">Send</a>
           <a ng-click="vm.hidePutForm()" class="btn opt delete close"><span>x</span></a>
 

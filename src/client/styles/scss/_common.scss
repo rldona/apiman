@@ -246,6 +246,9 @@ header {
     max-width: 768px;
     idth: 100%;
     margin: 0 auto;
+    .obj-id {
+      background: rgba(255, 0, 0, 0.1);
+    }
     .obj-key,
     .obj-value {
       width: 47.5%;
