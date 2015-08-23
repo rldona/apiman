@@ -4,23 +4,14 @@
 
 body {
   font: normal 400 $font_base_size 'Open Sans', arial;
-
   color: #000;
   background: #f4f4f6;
-
   -webkit-overflow-scroll: touch;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
-
-  // -webkit-touch-callout: none;
-  // -webkit-user-select: none;
-  // -khtml-user-select: none;
-  // -moz-user-select: none;
-  // -ms-user-select: none;
-  // user-select: none;
 }
 
 input {
